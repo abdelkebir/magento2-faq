@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+<menu>
+	<add id="Godogi_Faq::content_faq" title="FAQs" translate="title" module="Godogi_Faq" sortOrder="10" parent="Magento_Backend::content" resource="Godogi_Faq::content_faq"/> 
+	<add id="Godogi_Faq::content_faq_qa"  title="Questions / Answers"  module="Godogi_Faq" sortOrder="50" resource="Godogi_Faq::content_faq_qa" action="godogi_faq/qa/index"  parent="Godogi_Faq::content_faq"/>
+	<add id="Godogi_Faq::content_faq_topic"  title="Topics"  module="Godogi_Faq" sortOrder="50" resource="Godogi_Faq::content_faq_topic" action="godogi_faq/topic/index"  parent="Godogi_Faq::content_faq"/> 
+</menu>
+</config>
