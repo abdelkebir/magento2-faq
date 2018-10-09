@@ -1,19 +1,13 @@
 <?php
 namespace Godogi\Faq\Controller\Adminhtml\Topic;
-class Index extends \Magento\Backend\App\Action
+
+use Godogi\Faq\Controller\Adminhtml\Topic;
+
+class Index extends Topic
 {
-	protected $resultPageFactory = false;
-	public function __construct(
-		\Magento\Backend\App\Action\Context $context,
-		\Magento\Framework\View\Result\PageFactory $resultPageFactory
-	)
-	{
-		parent::__construct($context);
-		$this->resultPageFactory = $resultPageFactory;
-	}
 	public function execute()
 	{
-		$resultPage = $this->resultPageFactory->create();
+		$resultPage = $this->_resultPageFactory->create();
 		$resultPage->getConfig()->getTitle()->prepend((__('Topics')));
 		return $resultPage;
 	}
