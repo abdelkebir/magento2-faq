@@ -7,22 +7,33 @@ use Magento\Backend\Block\Template\Context;
 use Magento\Framework\Registry;
 use Magento\Framework\Data\FormFactory;
 use Magento\Cms\Model\Wysiwyg\Config;
+use Godogi\Faq\Helper\Data as FaqData;
 
 class Info extends Generic implements TabInterface
 {
+	protected $_faqHelper;
+	/**
+	* @var \Magento\Cms\Model\Wysiwyg\Config
+	*/
+	protected $_wysiwygConfig;
 	
 	/**
 	* @param Context $context
 	* @param Registry $registry
 	* @param FormFactory $formFactory
+	* @param Config $wysiwygConfig
 	* @param array $data
 	*/
 	public function __construct(
 		Context $context,
 		Registry $registry,
 		FormFactory $formFactory,
+		Config $wysiwygConfig,
+		FaqData $faqHelper,
 		array $data = []
 	) {
+		$this->_faqHelper = $faqHelper;
+		$this->_wysiwygConfig = $wysiwygConfig;
 		parent::__construct($context, $registry, $formFactory, $data);
 	}
 	/**
@@ -50,12 +61,42 @@ class Info extends Generic implements TabInterface
 			);
 		}
 		$fieldset->addField(
-			'title',
+			'topic_id',
+			'select',
+			[
+				'name' => 'topic_id',
+				'label' => __('Topic'),
+				'required' => true,
+				'options' => $this->_faqHelper->toOptionArray()
+			]
+		);
+		$fieldset->addField(
+			'question',
 			'text',
 			[
-				'name' => 'title',
-				'label' => __('Title'),
+				'name' => 'question',
+				'label' => __('Question'),
 				'required' => true
+			]
+		);
+		$fieldset->addField(
+			'answer_summary',
+			'textarea',
+			[
+				'name' => 'answer_summary',
+				'label' => __('Answer Summary'),
+				'required' => true
+			]
+		);
+		$wysiwygConfig = $this->_wysiwygConfig->getConfig();
+		$fieldset->addField(
+			'answer',
+			'editor',
+			[
+				'name' => 'answer',
+				'label' => __('Answer'),
+				'required' => true,
+				'config' => $wysiwygConfig
 			]
 		);
 		$fieldset->addField(
@@ -67,7 +108,6 @@ class Info extends Generic implements TabInterface
 				'required' => true
 			]
 		);
-		
 		$data = $model->getData();
 		$form->setValues($data);
 		$this->setForm($form);

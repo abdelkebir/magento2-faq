@@ -107,5 +107,12 @@
                 </item>
             </argument>
         </column>
+        <actionsColumn name="actions" class="Godogi\Faq\Ui\Component\Listing\Column\TopicActions">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="indexField" xsi:type="string">topic_id</item>
+                </item>
+            </argument>
+        	</actionsColumn>
     </columns>
 </listing>

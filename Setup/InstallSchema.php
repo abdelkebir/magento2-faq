@@ -18,11 +18,23 @@ class InstallSchema implements InstallSchemaInterface
 				['identity' => true, 'unsigned' => true, 'nullable' => false, 'primary' => true],
 				'Question Answer Id')
 			->addColumn(
+				'topic_id',
+				Table::TYPE_INTEGER,
+				null,
+				['unsigned' => true,'nullable' => false,'primary' => true],
+				'Topic ID')
+			->addColumn(
 				'question',
 				Table::TYPE_TEXT,
 				500,
 				[],
 				'Question')
+			->addColumn(
+				'answer_summary',
+				Table::TYPE_TEXT,
+				500,
+				[],
+				'Answer Summary')
 			->addColumn(
 				'answer',
 				Table::TYPE_TEXT,
