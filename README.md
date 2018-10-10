@@ -1,2 +1,2 @@
 # magento2-faq
-Magento 2 FAQ Extension
+Magento 2 FAQ Extension - Not ready yet
