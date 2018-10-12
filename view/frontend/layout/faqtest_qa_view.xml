@@ -1,0 +1,12 @@
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../../lib/internal/Magento/Framework/View/Layout/etc/page_configuration.xsd" layout="2columns-right">
+    <body>
+        <referenceContainer name="content">
+            <block class="Godogi\Faq\Block\Faq" name="faq_qa" template="Godogi_Faq::qa.phtml" />
+        </referenceContainer>
+        <referenceContainer name="sidebar.additional">
+            <block class="Godogi\Faq\Block\Faq" name="faq_topics" template="Godogi_Faq::topics.phtml" />
+            <referenceBlock name="catalog.compare.sidebar" remove="true"/>
+            <referenceBlock name="wishlist_sidebar" remove="true"/>
+        </referenceContainer>
+    </body>
+</page>

@@ -5,10 +5,20 @@ use Magento\Backend\App\Action;
 use Magento\Backend\App\Action\Context;
 use Magento\Framework\Registry;
 use Magento\Framework\View\Result\PageFactory;
+use Magento\UrlRewrite\Model\UrlRewriteFactory;
+use Magento\UrlRewrite\Model\UrlRewrite;
 use Godogi\Faq\Model\QaFactory;
 
 class Qa extends Action
 {
+	/**
+	* @var UrlRewrite
+	*/
+	protected $_urlRewrite;
+	/**
+	* @var UrlRewriteFactory
+	*/
+	protected $_urlRewriteFactory;
 	/**
 	* Core registry
 	*
@@ -33,17 +43,23 @@ class Qa extends Action
 	* @param Registry $coreRegistry
 	* @param PageFactory $resultPageFactory
 	* @param QaFactory $qaFactory
+	* @param UrlRewriteFactory $urlRewriteFactory
+	* @param UrlRewrite $urlRewrite
 	*/
 	public function __construct(
 		Context $context,
 		Registry $coreRegistry,
 		PageFactory $resultPageFactory,
-		QaFactory $qaFactory
+		QaFactory $qaFactory,
+		UrlRewriteFactory $urlRewriteFactory,
+		UrlRewrite $urlRewrite
 	) {
 		parent::__construct($context);
 		$this->_coreRegistry = $coreRegistry;
 		$this->_resultPageFactory = $resultPageFactory;
 		$this->_qaFactory = $qaFactory;
+		$this->_urlRewriteFactory = $urlRewriteFactory;
+		$this->_urlRewrite = $urlRewrite;
 	}
 	
 	

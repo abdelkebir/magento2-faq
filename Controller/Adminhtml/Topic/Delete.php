@@ -16,11 +16,19 @@ class Delete extends Topic
 			$topicModel = $this->_topicFactory->create();
 			$topicModel->load($topicId);
 			// Check this topic exists or not
-			if (!$topicModel->getId()) {
+			if (!$topicModel->getTopicId()) {
 				$this->messageManager->addError(__('This topic no longer exists.'));
 			} else {
 				try {
-					// Delete news
+					// Delete URL rewrite
+					$UrlRewriteCollection = $this->_urlRewrite->getCollection()
+													->addFieldToFilter('request_path', 'faqtest/'.$topicModel->getUrl())
+													->addFieldToFilter('target_path', 'faqtest/topic/view/id/'.$topicModel->getTopicId());
+					$urlRItem = $UrlRewriteCollection->getFirstItem();
+					if ($urlRItem->getId()) {
+        				$urlRItem->delete();  // Delete this URL rewrite.
+    				}
+					// Delete topic
 					$topicModel->delete();
 					$this->messageManager->addSuccess(__('The topic has been deleted.'));
 					// Redirect to grid page
