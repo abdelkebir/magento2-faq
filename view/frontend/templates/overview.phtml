@@ -1,1 +1,13 @@
-<h1>Overview</h1>
+<?php
+
+foreach($this->getTopics() as $topic){
+	echo '<div class="col-sm-6">';
+		echo '<h3>'.$topic['title'].'</h3>';
+		echo '<ul>';
+			foreach($this->getQasByTopicId($topic['id']) as $qa){
+				echo '<li><a href="/faqtest/'.$qa['url'].'">'.$qa['question'].'</a></li>';
+			}
+		echo '</ul>';
+		echo '<a class="btn btn-blue" href="/faqtest/'.$topic['url'].'">View all</a>';
+	echo '</div>';
+}
