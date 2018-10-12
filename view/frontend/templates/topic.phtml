@@ -1,0 +1,12 @@
+<?php
+$currentTopic = $this->getCurrentTopic();
+echo '<h1>'.$currentTopic["title"].'</h1>';
+?>
+<ul>
+	<?php 
+		foreach($this->getQasById() as $qa){
+			echo '<h4><a href="/faqtest/'.$qa["url"].'">'.$qa["question"].'</a></h4>';
+			echo '<p>'.$qa['answer_summary'].'</p>';
+		}
+	?>
+</ul>

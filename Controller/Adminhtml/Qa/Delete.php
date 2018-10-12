@@ -20,7 +20,15 @@ class Delete extends Qa
 				$this->messageManager->addError(__('This qa no longer exists.'));
 			} else {
 				try {
-					// Delete news
+					// Delete URL rewrite
+					$UrlRewriteCollection = $this->_urlRewrite->getCollection()
+													->addFieldToFilter('request_path', 'faqtest/'.$qaModel->getUrl())
+													->addFieldToFilter('target_path', 'faqtest/qa/view/id/'.$qaModel->getQaId());
+					$urlRItem = $UrlRewriteCollection->getFirstItem();
+					if ($urlRItem->getId()) {
+        				$urlRItem->delete();  // Delete this URL rewrite.
+    				}
+					// Delete QA
 					$qaModel->delete();
 					$this->messageManager->addSuccess(__('The qa has been deleted.'));
 					// Redirect to grid page

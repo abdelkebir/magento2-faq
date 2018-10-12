@@ -5,26 +5,37 @@ use Magento\Backend\App\Action;
 use Magento\Backend\App\Action\Context;
 use Magento\Framework\Registry;
 use Magento\Framework\View\Result\PageFactory;
+use Magento\UrlRewrite\Model\UrlRewriteFactory;
+use Magento\UrlRewrite\Model\UrlRewrite;
 use Godogi\Faq\Model\TopicFactory;
 
 class Topic extends Action
 {
 	/**
+	* @var UrlRewrite
+	*/
+	protected $_urlRewrite;
+	/**
+	* @var UrlRewriteFactory
+	*/
+	protected $_urlRewriteFactory;
+
+	/**
 	* Core registry
 	*
-	* @var \Magento\Framework\Registry
+	* @var Registry
 	*/
 	protected $_coreRegistry;
 	/**
 	* Result page factory
 	*
-	* @var \Magento\Framework\View\Result\PageFactory
+	* @var PageFactory
 	*/
 	protected $_resultPageFactory;
 	/**
 	* News model factory
 	*
-	* @var \Tutorial\SimpleNews\Model\NewsFactory
+	* @var TopicFactory
 	*/
 	protected $_topicFactory;
 	
@@ -33,17 +44,23 @@ class Topic extends Action
 	* @param Registry $coreRegistry
 	* @param PageFactory $resultPageFactory
 	* @param TopicFactory $topicFactory
+	* @param UrlRewriteFactory $urlRewriteFactory
+	* @param UrlRewrite $urlRewrite
 	*/
 	public function __construct(
 		Context $context,
 		Registry $coreRegistry,
 		PageFactory $resultPageFactory,
-		TopicFactory $topicFactory
+		TopicFactory $topicFactory,
+		UrlRewriteFactory $urlRewriteFactory,
+		UrlRewrite $urlRewrite
 	) {
 		parent::__construct($context);
 		$this->_coreRegistry = $coreRegistry;
 		$this->_resultPageFactory = $resultPageFactory;
 		$this->_topicFactory = $topicFactory;
+		$this->_urlRewriteFactory = $urlRewriteFactory;
+		$this->_urlRewrite = $urlRewrite;
 	}
 	
 	
