@@ -9,6 +9,6 @@ class Collection extends \Magento\Framework\Model\ResourceModel\Db\Collection\Ab
 	 */
 	protected function _construct()
 	{
-		$this->_init('Godogi\Faq\Model\Banner', 'Godogi\Faq\Model\ResourceModel\Qa');
+		$this->_init('Godogi\Faq\Model\Qa', 'Godogi\Faq\Model\ResourceModel\Qa');
 	}
 }

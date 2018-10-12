@@ -1,8 +1,14 @@
 <div class="block block-faq">
 	<div class="block-title">
-		<strong id="block-faq-heading">Topics</strong>
+		<strong id="block-faq-heading">FAQ Topics</strong>
 	</div>
 	<div class="block-content">
-		
+		<?php
+		echo '<ul>';
+			foreach($this->getTopics() as $topic){
+				echo '<li><a href="/faqtest/'.$topic['url'].'">'.$topic['title'].'</a></li>';
+			}
+		echo '</ul>';
+		?>
 	</div>
 </div>
