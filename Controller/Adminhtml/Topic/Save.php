@@ -22,10 +22,10 @@ class Save extends Topic
 			
 			if($topicModel->getTopicId()){ // On topic edit (topic already exist)
 				// Url rewrite collection with same request path
-				$UrlRewriteCollection = $this->_urlRewrite->getCollection()->addFieldToFilter('request_path', 'faqtest/'.$formData["url"]);
+				$UrlRewriteCollection = $this->_urlRewrite->getCollection()->addFieldToFilter('request_path', 'support/'.$formData["url"]);
 				$urlRItem = $UrlRewriteCollection->getFirstItem();
 				foreach($UrlRewriteCollection as $urlRewrite){
-					if($urlRewrite['target_path'] != 'faqtest/topic/view/id/'.$topicModel->getTopicId()){
+					if($urlRewrite['target_path'] != 'support/topic/view/id/'.$topicModel->getTopicId()){
 						$this->messageManager->addError(__('This URL already exist.'));
         				$this->_redirect('*/*/create');
 						return;
@@ -35,7 +35,7 @@ class Save extends Topic
         			$urlRItem->delete();  // Delete this URL rewrite, we will create a new one on topic creation.
     			}
 			}else{ // On new topic creation
-				$UrlRewriteCollection = $this->_urlRewrite->getCollection()->addFieldToFilter('request_path', 'faqtest/'.$formData["url"]);
+				$UrlRewriteCollection = $this->_urlRewrite->getCollection()->addFieldToFilter('request_path', 'support/'.$formData["url"]);
     			$urlRItem = $UrlRewriteCollection->getFirstItem(); 
     			if ($urlRItem->getId()) { // Request path already exist
         			$this->messageManager->addError(__('This URL already exist.'));
@@ -56,9 +56,9 @@ class Save extends Topic
 				/* unique identifier - set random unique value to id path */
 				$urlRewriteModel->setIdPath(rand(1, 100000));
 				/* set actual url path to target path field */
-				$urlRewriteModel->setTargetPath("faqtest/topic/view/id/".$topicModel->getTopicId());
+				$urlRewriteModel->setTargetPath("support/topic/view/id/".$topicModel->getTopicId());
 				/* set requested path which you want to create */
-				$urlRewriteModel->setRequestPath("faqtest/".$formData["url"]);
+				$urlRewriteModel->setRequestPath("support/".$formData["url"]);
 				$urlRewriteModel->save();
 				
 				// Display success message

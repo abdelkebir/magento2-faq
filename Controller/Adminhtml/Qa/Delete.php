@@ -22,8 +22,8 @@ class Delete extends Qa
 				try {
 					// Delete URL rewrite
 					$UrlRewriteCollection = $this->_urlRewrite->getCollection()
-													->addFieldToFilter('request_path', 'faqtest/'.$qaModel->getUrl())
-													->addFieldToFilter('target_path', 'faqtest/qa/view/id/'.$qaModel->getQaId());
+													->addFieldToFilter('request_path', 'support/'.$qaModel->getUrl())
+													->addFieldToFilter('target_path', 'support/qa/view/id/'.$qaModel->getQaId());
 					$urlRItem = $UrlRewriteCollection->getFirstItem();
 					if ($urlRItem->getId()) {
         				$urlRItem->delete();  // Delete this URL rewrite.

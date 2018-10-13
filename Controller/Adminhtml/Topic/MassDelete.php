@@ -16,8 +16,8 @@ class MassDelete extends Topic
 			try {
 				// Delete URL rewrite
 				$UrlRewriteCollection = $this->_urlRewrite->getCollection()
-												->addFieldToFilter('request_path', 'faqtest/'.$item->getUrl())
-												->addFieldToFilter('target_path', 'faqtest/topic/view/id/'.$item->getTopicId());
+												->addFieldToFilter('request_path', 'support/'.$item->getUrl())
+												->addFieldToFilter('target_path', 'support/topic/view/id/'.$item->getTopicId());
 				$urlRItem = $UrlRewriteCollection->getFirstItem();
 				if ($urlRItem->getId()){
         			$urlRItem->delete();  // Delete this URL rewrite.

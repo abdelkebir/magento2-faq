@@ -1,10 +1,11 @@
 <?php
-$currentTopic = $this->getCurrentTopic();
-echo '<h1>'.$currentTopic["title"].'</h1>';
+$qas = $this->getSearchResults();
+count($qas);
+echo '<h1>'.count($qas).' result(s) found for "'.$this->getSearchQuery().'"</h1>';
 ?>
 <ul>
 	<?php 
-		foreach($this->getQasById() as $qa){
+		foreach($qas as $qa){
 			echo '<h4><a href="/support/'.$qa["url"].'">'.$qa["question"].'</a></h4>';
 			echo '<p>'.$qa['answer_summary'].'</p>';
 		}

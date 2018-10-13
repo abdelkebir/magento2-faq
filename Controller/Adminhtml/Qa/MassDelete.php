@@ -16,8 +16,8 @@ class MassDelete extends Qa
 			try {
 				// Delete URL rewrite
 				$UrlRewriteCollection = $this->_urlRewrite->getCollection()
-												->addFieldToFilter('request_path', 'faqtest/'.$item->getUrl())
-												->addFieldToFilter('target_path', 'faqtest/qa/view/id/'.$item->getQaId());
+												->addFieldToFilter('request_path', 'support/'.$item->getUrl())
+												->addFieldToFilter('target_path', 'support/qa/view/id/'.$item->getQaId());
 				$urlRItem = $UrlRewriteCollection->getFirstItem();
 				if ($urlRItem->getId()) {
         			$urlRItem->delete();  // Delete this URL rewrite.
