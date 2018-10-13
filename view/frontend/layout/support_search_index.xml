@@ -4,6 +4,7 @@
 	</head>
 	<body>
     	<referenceContainer name="page.top">
+    		<block class="Godogi\Faq\Block\Faq" name="faq_search_form" template="Godogi_Faq::search_form.phtml" />
 			<referenceBlock name="homepage-top-block" remove="true"/>
 		</referenceContainer>
 		<referenceContainer name="content">
