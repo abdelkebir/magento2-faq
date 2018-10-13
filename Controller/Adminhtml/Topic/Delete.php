@@ -22,8 +22,8 @@ class Delete extends Topic
 				try {
 					// Delete URL rewrite
 					$UrlRewriteCollection = $this->_urlRewrite->getCollection()
-													->addFieldToFilter('request_path', 'faqtest/'.$topicModel->getUrl())
-													->addFieldToFilter('target_path', 'faqtest/topic/view/id/'.$topicModel->getTopicId());
+													->addFieldToFilter('request_path', 'support/'.$topicModel->getUrl())
+													->addFieldToFilter('target_path', 'support/topic/view/id/'.$topicModel->getTopicId());
 					$urlRItem = $UrlRewriteCollection->getFirstItem();
 					if ($urlRItem->getId()) {
         				$urlRItem->delete();  // Delete this URL rewrite.

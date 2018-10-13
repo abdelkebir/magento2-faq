@@ -78,4 +78,15 @@ class Data extends AbstractHelper
 		$qa = $qa->load($qaId);
 		return ['id'=>$qa->getQaId(),'question'=>$qa->getQuestion(),'answer'=>$qa->getAnswer()];
 	}
+	public function getSearchResults($q) {
+		$qas = [];
+		$collection = $this->_qaCollectionFactory->create();
+		$collection->addFieldToFilter('question', array('like' => '%'.$q.'%'));
+		foreach($collection as $qa){
+			$qas[$qa->getQaId()]['question']=$qa->getQuestion();
+			$qas[$qa->getQaId()]['answer_summary']=$qa->getAnswerSummary();
+			$qas[$qa->getQaId()]['url']=$qa->getUrl();
+		}
+		return $qas;
+	}
 }

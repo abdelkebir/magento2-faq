@@ -5,9 +5,9 @@ foreach($this->getTopics() as $topic){
 		echo '<h3>'.$topic['title'].'</h3>';
 		echo '<ul>';
 			foreach($this->getQasByTopicId($topic['id']) as $qa){
-				echo '<li><a href="/faqtest/'.$qa['url'].'">'.$qa['question'].'</a></li>';
+				echo '<li><a href="/support/'.$qa['url'].'">'.$qa['question'].'</a></li>';
 			}
 		echo '</ul>';
-		echo '<a class="btn btn-blue" href="/faqtest/'.$topic['url'].'">View all</a>';
+		echo '<a class="btn btn-blue" href="/support/'.$topic['url'].'">View all</a>';
 	echo '</div>';
 }

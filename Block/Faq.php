@@ -49,4 +49,13 @@ class Faq extends \Magento\Framework\View\Element\Template
 		$qaId = $this->request->getParam('id');
 		return $this->_faqHelper->getCurrentQa($qaId);
 	}
+	public function getSearchResults()
+	{
+		$q = $this->request->getParam('q');
+		return $this->_faqHelper->getSearchResults($q);
+	}
+	public function getSearchQuery()
+	{
+		return $this->request->getParam('q');
+	}
 }
