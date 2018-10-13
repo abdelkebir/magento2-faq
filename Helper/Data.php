@@ -68,6 +68,19 @@ class Data extends AbstractHelper
 		}
 		return $qas;
 	}
+	public function getQasByTopicIdLimited($topicId)
+	{
+		$qas = [];
+		$collection = $this->_qaCollectionFactory->create();
+		$collection->addFieldToFilter('topic_id',array('eq' => $topicId));
+		$collection->setPageSize(5)->setCurPage(1);
+		foreach($collection as $qa){
+			$qas[$qa->getQaId()]['question']=$qa->getQuestion();
+			$qas[$qa->getQaId()]['answer_summary']=$qa->getAnswerSummary();
+			$qas[$qa->getQaId()]['url']=$qa->getUrl();
+		}
+		return $qas;
+	}
 	public function getCurrentTopic($topicId){
 		$topic = $this->_topicFactory->create();
 		$topic = $topic->load($topicId);
