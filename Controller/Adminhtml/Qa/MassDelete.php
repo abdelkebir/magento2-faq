@@ -10,32 +10,26 @@ class MassDelete extends Qa
 	*/
 	public function execute()
 	{
-		// Get IDs of the selected qas
-		$qaIds = $this->getRequest()->getParam('qa');
-		print_r($this->getRequest()->getPost());
-		exit();
-		foreach ($qaIds as $qaId) {
+		$collection = $this->_filter->getCollection($this->_collectionFactory->create());
+		$collectionSize = $collection->getSize();
+		foreach ($collection as $item) {
 			try {
-				/** @var $qaModel \Godogi\Faq\Model\Qa */
-				$qaModel = $this->_qaFactory->create();
-				$qaModel->load($qaId)->delete();
 				// Delete URL rewrite
 				$UrlRewriteCollection = $this->_urlRewrite->getCollection()
-												->addFieldToFilter('request_path', 'faqtest/'.$qaModel->getUrl())
-												->addFieldToFilter('target_path', 'faqtest/qa/view/id/'.$qaModel->getQaId());
+												->addFieldToFilter('request_path', 'faqtest/'.$item->getUrl())
+												->addFieldToFilter('target_path', 'faqtest/qa/view/id/'.$item->getQaId());
 				$urlRItem = $UrlRewriteCollection->getFirstItem();
 				if ($urlRItem->getId()) {
         			$urlRItem->delete();  // Delete this URL rewrite.
     			}
+    			$item->delete();
 			} catch (\Exception $e) {
 				$this->messageManager->addError($e->getMessage());
 			}
 		}
-		if (count($qaIds)) {
-			$this->messageManager->addSuccess(
-				__('A total of %1 qa(s) were deleted.', count($qaIds))
-			);
-		}
+		$this->messageManager->addSuccess(
+			__('A total of %1 qa(s) were deleted.', count($collectionSize))
+		);
 		$this->_redirect('*/*/index');
 	}
 }
