@@ -34,6 +34,10 @@ class Faq extends \Magento\Framework\View\Element\Template
 	{
 		return $this->_faqHelper->getQasByTopicId($topicId);
 	}
+	public function getQasByTopicIdLimited($topicId)
+	{
+		return $this->_faqHelper->getQasByTopicIdLimited($topicId);
+	}
 	public function getQasById()
 	{
 		$topicId = $this->request->getParam('id');

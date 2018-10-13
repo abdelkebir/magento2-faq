@@ -1,4 +1,43 @@
-p.test{
-	font-size: 30px;
-	color: red;
+.faq-search {
+	background-color: #03dcb1;
+}
+.faq-search .container {
+	padding: 40px;
+}
+.search-form #search_input {
+	line-height: 26px;
+	height: 60px;
+	font-size: 20px;
+	padding: 10px 20px;
+	margin: 20px;
+	border-radius: 4px;
+	-webkit-box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.4);
+	-moz-box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.4);
+	box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.4);
+}
+.faq-search .search-form {
+	position: relative;
+}
+.search-form #search_submit {
+	position: absolute;
+	top: 28px;
+	right: -10px;
+	background-color: #10234a;
+	border: 1px solid #10234a;
+	border-radius: 4px;
+	padding: 10px 30px;
+	color: white;
+	font-size: 16px;
+}
+.search-form #search_submit:hover{
+	background-color: #20335a;
+}
+.columns ul li {
+	list-style: none;
+}
+.columns ul li a{
+	
+}
+.columns a.btn.btn-blue{
+	
 }

@@ -1,13 +1,21 @@
 <?php
-
+$i=1;
+$numberOfTopics = count($this->getTopics());
 foreach($this->getTopics() as $topic){
-	echo '<div class="col-sm-6">';
-		echo '<h3>'.$topic['title'].'</h3>';
-		echo '<ul>';
-			foreach($this->getQasByTopicId($topic['id']) as $qa){
-				echo '<li><a href="/support/'.$qa['url'].'">'.$qa['question'].'</a></li>';
-			}
-		echo '</ul>';
-		echo '<a class="btn btn-blue" href="/support/'.$topic['url'].'">View all</a>';
-	echo '</div>';
+	if ($i % 2 != 0) {
+		echo '<div class="row">';
+	}
+		echo '<div class="col-sm-6">';
+			echo '<h3>'.$topic['title'].'</h3>';
+			echo '<ul>';
+				foreach($this->getQasByTopicIdLimited($topic['id']) as $qa){
+					echo '<li><a href="/support/'.$qa['url'].'">'.$qa['question'].'</a></li>';
+				}
+			echo '</ul>';
+			echo '<a class="btn btn-blue" href="/support/'.$topic['url'].'">View all</a>';
+		echo '</div>';
+	if (($i % 2 == 0) || $i == $numberOfTopics) {
+		echo '</div>';
+	}
+	$i++;
 }
