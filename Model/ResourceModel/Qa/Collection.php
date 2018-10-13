@@ -2,6 +2,7 @@
 namespace Godogi\Faq\Model\ResourceModel\Qa;
 class Collection extends \Magento\Framework\Model\ResourceModel\Db\Collection\AbstractCollection
 {
+	protected $_idFieldName = 'qa_id';
 	/**
 	 * Define resource model
 	 *

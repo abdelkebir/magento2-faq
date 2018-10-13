@@ -76,6 +76,6 @@ class Data extends AbstractHelper
 	public function getCurrentQa($qaId){
 		$qa = $this->_qaFactory->create();
 		$qa = $qa->load($qaId);
-		return ['id'=>$qa->getQaId(),'question'=>$qa->getQuestion(),'summary'=>$qa->getSummary()];
+		return ['id'=>$qa->getQaId(),'question'=>$qa->getQuestion(),'answer'=>$qa->getAnswer()];
 	}
 }

@@ -7,10 +7,17 @@ use Magento\Framework\Registry;
 use Magento\Framework\View\Result\PageFactory;
 use Magento\UrlRewrite\Model\UrlRewriteFactory;
 use Magento\UrlRewrite\Model\UrlRewrite;
+use Magento\Ui\Component\MassAction\Filter;
+
 use Godogi\Faq\Model\QaFactory;
+use Godogi\Faq\Model\ResourceModel\Qa\CollectionFactory;
 
 class Qa extends Action
 {
+	/**
+	* @var Filter
+	*/
+	protected $_filter;
 	/**
 	* @var UrlRewrite
 	*/
@@ -37,29 +44,39 @@ class Qa extends Action
 	* @var \Tutorial\SimpleNews\Model\NewsFactory
 	*/
 	protected $_qaFactory;
+	/**
+	* @var CollectionFactory
+	*/
+	protected $_collectionFactory;
 	
 	/**
 	* @param Context $context
 	* @param Registry $coreRegistry
 	* @param PageFactory $resultPageFactory
 	* @param QaFactory $qaFactory
+	* @param CollectionFactory $collectionFactory
 	* @param UrlRewriteFactory $urlRewriteFactory
 	* @param UrlRewrite $urlRewrite
+	* @param Filter $filter
 	*/
 	public function __construct(
 		Context $context,
 		Registry $coreRegistry,
 		PageFactory $resultPageFactory,
 		QaFactory $qaFactory,
+		CollectionFactory $collectionFactory,
 		UrlRewriteFactory $urlRewriteFactory,
-		UrlRewrite $urlRewrite
+		UrlRewrite $urlRewrite,
+		Filter $filter
 	) {
 		parent::__construct($context);
 		$this->_coreRegistry = $coreRegistry;
 		$this->_resultPageFactory = $resultPageFactory;
 		$this->_qaFactory = $qaFactory;
+		$this->_collectionFactory = $collectionFactory;
 		$this->_urlRewriteFactory = $urlRewriteFactory;
 		$this->_urlRewrite = $urlRewrite;
+		$this->_filter = $filter;
 	}
 	
 	
