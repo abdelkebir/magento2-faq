@@ -1,4 +1,7 @@
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../../lib/internal/Magento/Framework/View/Layout/etc/page_configuration.xsd" layout="2columns-right">
+	<head>
+		<css src="Godogi_Faq::css/faq.css"/>
+	</head>
 	<body>
 		<referenceContainer name="page.top">
 			<block class="Godogi\Faq\Block\Faq" name="faq_search_form" template="Godogi_Faq::search_form.phtml" />
