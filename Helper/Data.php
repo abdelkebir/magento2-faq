@@ -28,7 +28,7 @@ class Data extends AbstractHelper
 		QaCollectionFactory $qaCollectionFactory,
 		QaFactory $qaFactory,
 		TopicFactory $topicFactory,
-		\Zend_Filter_Interface $templateProcessor,)
+		\Zend_Filter_Interface $templateProcessor)
 	{
 		$this->_topicCollectionFactory = $topicCollectionFactory;
 		$this->_qaCollectionFactory = $qaCollectionFactory;
