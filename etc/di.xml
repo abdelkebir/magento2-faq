@@ -25,4 +25,9 @@
             <argument name="resourceModel" xsi:type="string">Godogi\Faq\Model\ResourceModel\Topic</argument>
         </arguments>
     </virtualType>
+	<type name="Godogi\Faq\Helper\Data">
+		<arguments>
+			<argument name="templateProcessor" xsi:type="object">Magento\Widget\Model\Template\Filter</argument>
+		</arguments>
+	</type>
 </config>
