@@ -56,7 +56,7 @@ class Faq extends \Magento\Framework\View\Element\Template
 	public function getSearchResults()
 	{
 		$q = $this->request->getParam('q');
-		$q = preg_replace('~[^A-Za-z0-9 _-?.!]~','',$q);
+		$q = preg_replace('/[^A-Za-z0-9\-_ ]/','',$q);
 		return $this->_faqHelper->getSearchResults($q);
 	}
 	public function getSearchQuery()

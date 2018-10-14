@@ -10,6 +10,7 @@ use \Godogi\Faq\Model\TopicFactory;
 
 class Data extends AbstractHelper
 {
+	protected $_templateProcessor;
 	protected $_topicCollectionFactory;
 	protected $_qaCollectionFactory;
 	/**
@@ -26,12 +27,14 @@ class Data extends AbstractHelper
 		TopicCollectionFactory $topicCollectionFactory,
 		QaCollectionFactory $qaCollectionFactory,
 		QaFactory $qaFactory,
-		TopicFactory $topicFactory)
+		TopicFactory $topicFactory,
+		\Zend_Filter_Interface $templateProcessor,)
 	{
 		$this->_topicCollectionFactory = $topicCollectionFactory;
 		$this->_qaCollectionFactory = $qaCollectionFactory;
 		$this->_qaFactory = $qaFactory;
 		$this->_topicFactory = $topicFactory;
+		$this->_templateProcessor = $templateProcessor;
 		parent::__construct($context);
 	}
 	
@@ -89,7 +92,7 @@ class Data extends AbstractHelper
 	public function getCurrentQa($qaId){
 		$qa = $this->_qaFactory->create();
 		$qa = $qa->load($qaId);
-		return ['id'=>$qa->getQaId(),'question'=>$qa->getQuestion(),'answer'=>$qa->getAnswer()];
+		return ['id'=>$qa->getQaId(),'question'=>$qa->getQuestion(),'answer'=>$this->templateProcessor->filter($qa->getAnswer())];
 	}
 	public function getSearchResults($q) {
 		$qas = [];

@@ -6,8 +6,10 @@ echo '<h1>'.count($qas).' result(s) found for "'.$this->getSearchQuery().'"</h1>
 <ul>
 	<?php 
 		foreach($qas as $qa){
-			echo '<h4><a href="/support/'.$qa["url"].'">'.$qa["question"].'</a></h4>';
-			echo '<p>'.$qa['answer_summary'].'</p>';
+			echo '<li>';
+				echo '<h4><a href="/support/'.$qa["url"].'">'.$qa["question"].'</a></h4>';
+				echo '<p>'.((strlen($qa['answer_summary']) > 200) ? substr($qa['answer_summary'],0,200).'...' : $qa['answer_summary']).'</p>';
+			echo '</li>';
 		}
 	?>
 </ul>
