@@ -87,12 +87,17 @@ class Data extends AbstractHelper
 	public function getCurrentTopic($topicId){
 		$topic = $this->_topicFactory->create();
 		$topic = $topic->load($topicId);
-		return ['id'=>$topic->getTopicId(),'title'=>$topic->getTitle(),'url'=>$topic->getUrl()];
+		return $topic->getData();
+	}
+	public function getTopicById($topicId){
+		$topic = $this->_topicFactory->create();
+		$topic = $topic->load($topicId);
+		return $topic->getData();
 	}
 	public function getCurrentQa($qaId){
 		$qa = $this->_qaFactory->create();
 		$qa = $qa->load($qaId);
-		return ['id'=>$qa->getQaId(),'question'=>$qa->getQuestion(),'answer'=>$this->_templateProcessor->filter($qa->getAnswer())];
+		return $qa->getData();
 	}
 	public function getSearchResults($q) {
 		$qas = [];

@@ -5,7 +5,7 @@ use Magento\Framework\View\Element\Template\Context;
 use Magento\Framework\App\RequestInterface;
 use Godogi\Faq\Helper\Data as FaqHelper;
 
-class Faq extends \Magento\Framework\View\Element\Template
+class Search extends \Magento\Framework\View\Element\Template
 {
 	protected $_faqHelper;
 	/**
@@ -27,7 +27,7 @@ class Faq extends \Magento\Framework\View\Element\Template
 	}
 	protected function _prepareLayout()
     {
-        $this->pageConfig->getTitle()->set(__('FAQs'));
+        $this->pageConfig->getTitle()->set(__('FAQs - Search'));
         $this->pageConfig->setKeywords(__('FAQs'));
         $this->pageConfig->setDescription(__('FAQs'));
         return parent::_prepareLayout();
@@ -71,3 +71,4 @@ class Faq extends \Magento\Framework\View\Element\Template
 		return $this->request->getParam('q');
 	}
 }
+ 

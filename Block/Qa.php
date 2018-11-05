@@ -5,7 +5,7 @@ use Magento\Framework\View\Element\Template\Context;
 use Magento\Framework\App\RequestInterface;
 use Godogi\Faq\Helper\Data as FaqHelper;
 
-class Faq extends \Magento\Framework\View\Element\Template
+class Qa extends \Magento\Framework\View\Element\Template
 {
 	protected $_faqHelper;
 	/**
@@ -27,9 +27,34 @@ class Faq extends \Magento\Framework\View\Element\Template
 	}
 	protected function _prepareLayout()
     {
-        $this->pageConfig->getTitle()->set(__('FAQs'));
+        $this->pageConfig->getTitle()->set(__('FAQs - ' . $this->getCurrentQa()['question']));
         $this->pageConfig->setKeywords(__('FAQs'));
         $this->pageConfig->setDescription(__('FAQs'));
+        $currentTopic = $this->getTopicById($this->getCurrentQa()['topic_id']);
+        $breadcrumbBlock = $this->getLayout()->getBlock('breadcrumbs');
+        $breadcrumbBlock->addCrumb(
+            'faq',
+            [
+                'label' => __('FAQs'),
+                'title' => __('FAQs'),
+                'link' => $this->_storeManager->getStore()->getBaseUrl() . 'support'
+            ]
+        );
+        $breadcrumbBlock->addCrumb(
+            'topic',
+            [
+                'label' => __($currentTopic['title']),
+                'title' => __($currentTopic['title']),
+                'link' => $this->_storeManager->getStore()->getBaseUrl() . 'support' . '/' . $currentTopic['url']
+            ]
+        );
+        $breadcrumbBlock->addCrumb(
+            'question',
+            [
+                'label' => __($this->getCurrentQa()['question']),
+                'title' => __($this->getCurrentQa()['question'])
+            ]
+        );
         return parent::_prepareLayout();
     }
 
@@ -54,6 +79,10 @@ class Faq extends \Magento\Framework\View\Element\Template
 	{
 		$topicId = $this->request->getParam('id');
 		return $this->_faqHelper->getCurrentTopic($topicId);
+	}
+	public function getTopicById($topicId)
+	{
+		return $this->_faqHelper->getTopicById($topicId);
 	}
 	public function getCurrentQa()
 	{
