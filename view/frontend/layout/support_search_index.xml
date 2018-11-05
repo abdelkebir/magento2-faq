@@ -3,12 +3,13 @@
 		<css src="Godogi_Faq::css/faq.css"/>
 	</head>
 	<body>
+		<referenceBlock name="page.main.title" remove="true" />
     	<referenceContainer name="page.top">
     		<block class="Godogi\Faq\Block\Faq" name="faq_search_form" template="Godogi_Faq::search_form.phtml" />
 			<referenceBlock name="homepage-top-block" remove="true"/>
 		</referenceContainer>
 		<referenceContainer name="content">
-			<block class="Godogi\Faq\Block\Faq" name="faq_search_result" template="Godogi_Faq::search_result.phtml"/>
+			<block class="Godogi\Faq\Block\Search" name="faq_search_result" template="Godogi_Faq::search_result.phtml"/>
 		</referenceContainer>
 		<referenceContainer name="sidebar.additional">
 			<block class="Godogi\Faq\Block\Faq" name="faq_topics" template="Godogi_Faq::topics.phtml"/>

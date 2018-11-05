@@ -5,7 +5,7 @@ use Magento\Framework\View\Element\Template\Context;
 use Magento\Framework\App\RequestInterface;
 use Godogi\Faq\Helper\Data as FaqHelper;
 
-class Faq extends \Magento\Framework\View\Element\Template
+class Topic extends \Magento\Framework\View\Element\Template
 {
 	protected $_faqHelper;
 	/**
@@ -27,9 +27,26 @@ class Faq extends \Magento\Framework\View\Element\Template
 	}
 	protected function _prepareLayout()
     {
-        $this->pageConfig->getTitle()->set(__('FAQs'));
+        $this->pageConfig->getTitle()->set(__('FAQs - ' . $this->getCurrentTopic()['title']));
         $this->pageConfig->setKeywords(__('FAQs'));
         $this->pageConfig->setDescription(__('FAQs'));
+        $breadcrumbBlock = $this->getLayout()->getBlock('breadcrumbs');
+        $breadcrumbBlock->addCrumb(
+            'faq',
+            [
+                'label' => __('FAQs'),
+                'title' => __('FAQs'),
+                'link' => $this->_storeManager->getStore()->getBaseUrl().'support'
+            ]
+        );
+        
+        $breadcrumbBlock->addCrumb(
+            'topic',
+            [
+                'label' => __($this->getCurrentTopic()['title']),
+                'title' => __($this->getCurrentTopic()['title'])
+            ]
+        );
         return parent::_prepareLayout();
     }
 
@@ -71,3 +88,4 @@ class Faq extends \Magento\Framework\View\Element\Template
 		return $this->request->getParam('q');
 	}
 }
+ 
