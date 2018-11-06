@@ -16,11 +16,11 @@ mv magento2-faq Faq;
 ```
 ## FTP
 
-create a folder named "Godogi" in app/code
+Create a folder named "Godogi" in app/code
 
-create a folder named "Faq" inside "Godogi" folder
+Create a folder named "Faq" inside "Godogi" folder
 
-upload this extension code to Godogi/Faq
+Upload this extension code to Godogi/Faq
 
 # Extension's folders
 
