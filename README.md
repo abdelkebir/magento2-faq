@@ -50,6 +50,6 @@ You can manage questions / answers and topics from admin panel, to do that go to
 
 # Frontend
 
-You can have access to the FAQs page by visitin this link:
+You can have access to the FAQs page by visiting the following link:
 
 **YourWebsiteLink/support**
