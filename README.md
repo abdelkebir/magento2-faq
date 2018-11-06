@@ -41,3 +41,15 @@ upload this extension code to Godogi/Faq
 -- -- -- Ui
 
 -- -- -- etc
+
+# Admin panel
+
+You can manage questions / answers and topics from admin panel, to do that go to:
+
+**CONTENT -> FAQs**
+
+# Frontend
+
+You can have access to the FAQs page by visitin this link:
+
+**YourWebsiteLink/support**
