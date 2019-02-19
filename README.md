@@ -13,6 +13,9 @@ mkdir Godogi;
 cd Godogi;
 git clone https://github.com/abdelkebir/magento2-faq.git;
 mv magento2-faq Faq;
+cd ../..
+php bin/magento setup:upgrade;
+php bin/magento setup:di:compile;
 ```
 ## FTP
 
